@@ -125,13 +125,11 @@
 
         <aside class="panel">
             <div class="panel-header"><h2>NET_CORE</h2></div>
-            <div class="search"><input type="text" placeholder="Search Encrypted Nodes..."></div>
-            <div class="list" id="users-container">
-                <div class="user">
-                    <img src="https://via.placeholder.com/45" alt="">
-                    <div class="user-meta"><h4>Global_Admin <i class="fas fa-check-circle" style="color:#3498db; font-size:0.7rem;"></i></h4><p>Mymensingh, BD</p></div>
-                </div>
+            <div class="search">
+                <input type="text" id="global-search" placeholder="Search Nodes or Locations..." onkeyup="filterUsers()">
             </div>
+            <div class="list" id="users-container">
+                </div>
         </aside>
 
         <main>
@@ -153,15 +151,29 @@
 
             <div class="input-box">
                 <i class="far fa-smile"></i>
+                <input type="file" id="file-input" style="display: none;" onchange="sendFile()">
+                <i class="fas fa-paperclip" onclick="document.getElementById('file-input').click()"></i>
                 <input type="text" id="main-input" placeholder="Enter encrypted message...">
-                <i class="fas fa-paperclip"></i>
                 <i class="fas fa-paper-plane" style="color: var(--accent);" onclick="pushMsg()"></i>
             </div>
         </main>
     </div>
 
     <script>
-        const socket = io(); // সার্ভারের সাথে কানেক্ট হচ্ছে
+        const socket = io();
+        let allNodes = [];
+
+        // IndexedDB সেটআপ (মেসেজ এবং ফাইল ব্রাউজারে সেভ রাখার জন্য)
+        let db;
+        const dbReq = indexedDB.open("AbstractVault", 1);
+        dbReq.onupgradeneeded = e => {
+            db = e.target.result;
+            if (!db.objectStoreNames.contains("messages")) db.createObjectStore("messages", { keyPath: "id", autoIncrement: true });
+        };
+        dbReq.onsuccess = e => {
+            db = e.target.result;
+            loadStoredMessages();
+        };
 
         window.onload = () => {
             setTimeout(() => {
@@ -171,6 +183,8 @@
                     document.body.classList.add('active');
                     if(!localStorage.getItem('node_id')) {
                         document.getElementById('profile-setup').style.display = 'flex';
+                    } else {
+                        socket.emit('register_node', JSON.parse(localStorage.getItem('node_id')));
                     }
                 }, 1000);
             }, 1000);
@@ -178,76 +192,121 @@
 
         function startSystem() {
             const fName = document.getElementById('fname').value;
-            const lName = document.getElementById('lname').value;
             if(!fName) return alert("Identity Required.");
-
             const nodeData = {
-                name: fName + ' ' + lName,
+                name: fName + ' ' + document.getElementById('lname').value,
                 loc: document.getElementById('location').value,
-                rel: document.getElementById('rel-status').value,
                 avatar: document.getElementById('avatar-url').value || 'https://via.placeholder.com/45'
             };
-            
             localStorage.setItem('node_id', JSON.stringify(nodeData));
             location.reload();
         }
 
-        // মেসেজ পাঠানোর ফাংশন (Socket.io Integrated)
         function pushMsg() {
             const inp = document.getElementById('main-input');
             const userData = JSON.parse(localStorage.getItem('node_id'));
-
             if(!inp.value || !userData) return;
 
-            const messagePayload = {
-                sender: userData.name,
-                text: inp.value,
-                time: new Date().toLocaleTimeString(),
-                location: userData.loc
-            };
-
-            // সার্ভারে মেসেজ পাঠানো
-            socket.emit('send_message', messagePayload);
+            const payload = { type: 'text', sender: userData.name, text: inp.value, time: new Date().toLocaleTimeString() };
+            socket.emit('send_message', payload);
             inp.value = '';
         }
 
-        // সার্ভার থেকে আসা মেসেজ রিসিভ করা
+        function sendFile() {
+            const file = document.getElementById('file-input').files[0];
+            const userData = JSON.parse(localStorage.getItem('node_id'));
+            if (!file || !userData) return;
+
+            const reader = new FileReader();
+            reader.onload = e => {
+                const payload = {
+                    type: 'file',
+                    sender: userData.name,
+                    fileName: file.name,
+                    fileType: file.type,
+                    content: e.target.result,
+                    time: new Date().toLocaleTimeString()
+                };
+                socket.emit('send_message', payload);
+            };
+            reader.readAsDataURL(file);
+        }
+
         socket.on('receive_message', (data) => {
-            const chatFlow = document.getElementById('chat-flow');
-            const b = document.createElement('div');
-            
-            const localData = localStorage.getItem('node_id');
-            const myName = localData ? JSON.parse(localData).name : "";
-            
-            b.className = (data.sender === myName) ? 'bubble me' : 'bubble them';
-            b.innerHTML = `<strong>${data.sender}</strong> ${data.text}`;
-            
-            chatFlow.appendChild(b);
-            chatFlow.scrollTop = chatFlow.scrollHeight;
+            storeMessage(data);
+            renderMessage(data);
         });
 
-        // রিয়েল-টাইম লোকেশন ট্র্যাকিং (Security Feature)
+        socket.on('update_user_list', (users) => {
+            allNodes = users;
+            renderUsers(users);
+        });
+
+        function filterUsers() {
+            const s = document.getElementById('global-search').value.toLowerCase();
+            const filtered = allNodes.filter(n => n.name.toLowerCase().includes(s) || n.loc.toLowerCase().includes(s));
+            renderUsers(filtered);
+        }
+
+        function renderUsers(users) {
+            const container = document.getElementById('users-container');
+            container.innerHTML = '';
+            users.forEach(u => {
+                container.innerHTML += `
+                    <div class="user">
+                        <img src="${u.avatar}" alt="">
+                        <div class="user-meta"><h4>${u.name}</h4><p>${u.loc} • <span style="color:#00ff00">Online</span></p></div>
+                    </div>`;
+            });
+        }
+
+        function storeMessage(data) {
+            const tx = db.transaction("messages", "readwrite");
+            tx.objectStore("messages").add(data);
+        }
+
+        function loadStoredMessages() {
+            const tx = db.transaction("messages", "readonly");
+            tx.objectStore("messages").getAll().onsuccess = e => {
+                e.target.result.forEach(m => renderMessage(m));
+            };
+        }
+
+        function renderMessage(data) {
+            const chatFlow = document.getElementById('chat-flow');
+            const b = document.createElement('div');
+            const myName = JSON.parse(localStorage.getItem('node_id')).name;
+            b.className = (data.sender === myName) ? 'bubble me' : 'bubble them';
+
+            if (data.type === 'file') {
+                if (data.fileType.startsWith('image/')) b.innerHTML = `<strong>${data.sender}</strong><img src="${data.content}" style="max-width:100%; border-radius:10px;">`;
+                else if (data.fileType.startsWith('video/')) b.innerHTML = `<strong>${data.sender}</strong><video controls style="max-width:100%; border-radius:10px;"><source src="${data.content}"></video>`;
+                else if (data.fileType.startsWith('audio/')) b.innerHTML = `<strong>${data.sender}</strong><audio controls style="width:100%;"><source src="${data.content}"></audio>`;
+                else b.innerHTML = `<strong>${data.sender}</strong><br><i class="fas fa-file"></i> <a href="${data.content}" download="${data.fileName}" style="color:var(--accent); font-size:0.8rem;">${data.fileName}</a>`;
+            } else {
+                b.innerHTML = `<strong>${data.sender}</strong> ${data.text}`;
+            }
+
+            chatFlow.appendChild(b);
+            chatFlow.scrollTop = chatFlow.scrollHeight;
+        }
+
         function revealMe() {
             navigator.geolocation.getCurrentPosition(p => {
-                const loc = { lat: p.coords.latitude, lon: p.coords.longitude };
-                socket.emit('share_location', loc);
-                alert("আপনার লোকেশন নোড নেটওয়ার্কে আপডেট করা হয়েছে।");
-            }, (err) => {
-                alert("Location access denied.");
+                alert(`Node Active: ${p.coords.latitude}, ${p.coords.longitude}`);
             });
         }
 
         function wipeData() {
-            if(confirm("Terminate this Global Node?")) {
+            if(confirm("Wipe all local data and nodes?")) {
                 localStorage.clear();
+                const tx = db.transaction("messages", "readwrite");
+                tx.objectStore("messages").clear();
                 location.reload();
             }
         }
 
-        // Enter চাপলে মেসেজ পাঠানোর সুবিধা
-        document.getElementById('main-input').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') pushMsg();
-        });
+        document.getElementById('main-input').addEventListener('keypress', e => { if (e.key === 'Enter') pushMsg(); });
     </script>
 </body>
 </html>

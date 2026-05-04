@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ABSTRACT | Core Control Center</title>
+    <title>ABSTRACT | Core Operating System</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,10 +16,10 @@
             --pitch-black: #000000;
             --pure-white: #ffffff;
             --text-dim: #101010;
-            --text-muted: #444444;
+            --text-muted: #555555;
             --accent-color: #ffcc00;
             --border-deep: #0a0a0a;
-            --glow-color: rgba(255, 204, 0, 0.04);
+            --glow-color: rgba(255, 204, 0, 0.05);
             --card-bg: #020202;
             --active-node-bg: #ffd700;
             --active-node-text: #000000;
@@ -46,7 +46,7 @@
             position: fixed;
         }
 
-        /* সিনেম্যাটিক ইন্ট্রো স্ক্রিন - প্রিমিয়াম অ্যানিমেশন */
+        /* Cinematic Intro Animation */
         #intro-screen {
             position: fixed;
             top: 0;
@@ -63,31 +63,31 @@
 
         .intro-text-wrapper {
             text-align: center;
-            perspective: 1000px;
+            perspective: 1200px;
         }
 
         .intro-title {
             font-family: 'Cinzel', serif;
-            font-size: clamp(3rem, 7vw, 7.5rem);
+            font-size: clamp(3rem, 8vw, 8rem);
             font-weight: 700;
-            letter-spacing: 16px;
+            letter-spacing: 18px;
             color: var(--pure-white);
             opacity: 0;
-            transform: translateY(60px) rotateX(-30deg);
-            text-shadow: 0 0 45px rgba(255, 255, 255, 0.15);
+            transform: translateY(70px) rotateX(-40deg);
+            text-shadow: 0 0 50px rgba(255, 255, 255, 0.18);
         }
 
         .intro-subtitle {
-            font-size: 0.75rem;
-            letter-spacing: 10px;
+            font-size: 0.8rem;
+            letter-spacing: 12px;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-top: 4rem;
+            margin-top: 4.5rem;
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(35px);
         }
 
-        /* অথেন্টিকেশন স্ক্রিন */
+        /* Authentication UI */
         #auth-screen {
             position: absolute;
             top: 0;
@@ -106,51 +106,51 @@
         .auth-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-deep);
-            border-radius: 22px;
+            border-radius: 24px;
             width: 100%;
-            max-width: 420px;
-            padding: 3.8rem 3rem;
+            max-width: 440px;
+            padding: 4rem 3.2rem;
             display: flex;
             flex-direction: column;
-            gap: 2.6rem;
-            box-shadow: 0 0 110px rgba(0, 0, 0, 0.95), inset 0 0 35px var(--glow-color);
+            gap: 2.8rem;
+            box-shadow: 0 0 120px rgba(0, 0, 0, 0.98), inset 0 0 40px var(--glow-color);
         }
 
         .auth-header {
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .auth-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            letter-spacing: 4px;
+            font-size: 2rem;
+            letter-spacing: 4.5px;
             color: var(--pure-white);
         }
 
         .auth-subtitle {
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
+            font-size: 0.78rem;
+            letter-spacing: 1.8px;
             color: var(--text-muted);
         }
 
         .auth-form {
             display: flex;
             flex-direction: column;
-            gap: 1.8rem;
+            gap: 2rem;
         }
 
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
 
         .input-label {
             font-size: 0.65rem;
-            letter-spacing: 2px;
+            letter-spacing: 2.2px;
             text-transform: uppercase;
             color: var(--text-muted);
         }
@@ -159,10 +159,10 @@
             background-color: var(--pitch-black);
             border: 1px solid var(--border-deep);
             border-radius: 14px;
-            padding: 15px 20px;
+            padding: 16px 22px;
             color: var(--pure-white);
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            font-size: 0.88rem;
+            letter-spacing: 1.2px;
             outline: none;
             transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
             width: 100%;
@@ -170,7 +170,7 @@
 
         .auth-input:focus {
             border-color: var(--accent-color);
-            box-shadow: 0 0 25px var(--glow-color);
+            box-shadow: 0 0 28px var(--glow-color);
         }
 
         .auth-button {
@@ -178,25 +178,25 @@
             color: var(--active-node-text);
             border: none;
             border-radius: 14px;
-            padding: 16px;
+            padding: 18px;
             font-weight: 600;
-            font-size: 0.82rem;
-            letter-spacing: 3px;
+            font-size: 0.85rem;
+            letter-spacing: 3.5px;
             cursor: pointer;
             transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             text-transform: uppercase;
         }
 
         .auth-button:hover {
-            opacity: 0.95;
-            box-shadow: 0 0 40px rgba(255, 204, 0, 0.4);
+            opacity: 0.94;
+            box-shadow: 0 0 45px rgba(255, 204, 0, 0.45);
             transform: translateY(-2px);
         }
 
         .auth-switch {
             text-align: center;
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
+            font-size: 0.78rem;
+            letter-spacing: 1.6px;
             color: var(--text-muted);
         }
 
@@ -208,48 +208,48 @@
 
         .error-message {
             color: var(--error-color);
-            font-size: 0.72rem;
-            letter-spacing: 0.8px;
+            font-size: 0.75rem;
+            letter-spacing: 0.9px;
             display: none;
         }
 
-        /* মূল ওয়ার্কস্পেস */
+        /* Workspace Core Window */
         .workspace {
             width: 98vw;
             height: 96vh;
             max-width: 1440px;
-            max-height: 860px;
+            max-height: 880px;
             background-color: var(--pitch-black);
             border: 1px solid var(--border-deep);
-            border-radius: 24px;
+            border-radius: 26px;
             display: flex;
             flex-direction: row;
             overflow: hidden;
-            box-shadow: 0 0 140px rgba(0, 0, 0, 0.99), inset 0 0 55px var(--glow-color);
+            box-shadow: 0 0 150px rgba(0, 0, 0, 0.99), inset 0 0 65px var(--glow-color);
             opacity: 0;
-            transform: scale(0.95);
+            transform: scale(0.96);
             position: relative;
             z-index: 1;
             visibility: hidden;
         }
 
-        /* সাইডবার */
+        /* Sidebar Navigation */
         .sidebar {
-            width: 92px;
+            width: 96px;
             background-color: var(--pitch-black);
             border-right: 1px solid var(--border-deep);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 4rem 0;
-            gap: 4.2rem;
+            padding: 4.2rem 0;
+            gap: 4.6rem;
             z-index: 10;
         }
 
         .logo-vertical {
             font-family: 'Cinzel', serif;
-            font-size: 0.78rem;
-            letter-spacing: 5px;
+            font-size: 0.82rem;
+            letter-spacing: 5.5px;
             writing-mode: vertical-rl;
             transform: rotate(180deg);
             color: var(--accent-color);
@@ -262,9 +262,9 @@
         }
 
         .nav-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -276,12 +276,12 @@
 
         .nav-icon:hover, .nav-icon.active {
             color: var(--accent-color);
-            border-color: rgba(255, 204, 0, 0.3);
-            box-shadow: 0 0 30px rgba(255, 204, 0, 0.22);
-            transform: scale(1.1) translateY(-3px);
+            border-color: rgba(255, 204, 0, 0.32);
+            box-shadow: 0 0 35px rgba(255, 204, 0, 0.26);
+            transform: scale(1.12) translateY(-3px);
         }
 
-        /* মূল কন্টেন্ট প্যানেল */
+        /* Content Container */
         .content-container {
             flex: 1;
             display: flex;
@@ -290,40 +290,40 @@
             height: 100%;
         }
 
-        /* হেডার */
+        /* Header UI */
         .header {
-            height: 96px;
+            height: 100px;
             border-bottom: 1px solid var(--border-deep);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 5rem;
+            padding: 0 5.5rem;
         }
 
         .header-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.35rem;
-            letter-spacing: 5px;
+            font-size: 1.4rem;
+            letter-spacing: 5.5px;
             color: var(--pure-white);
         }
 
         .header-status-badge {
-            font-size: 0.68rem;
-            letter-spacing: 2.6px;
+            font-size: 0.72rem;
+            letter-spacing: 2.8px;
             color: var(--accent-color);
-            border: 1px solid rgba(255, 204, 0, 0.28);
-            padding: 8px 20px;
-            border-radius: 12px;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            padding: 9px 22px;
+            border-radius: 14px;
             background-color: var(--pitch-black);
         }
 
-        /* মেইন বডি এরিয়া */
+        /* Main Workspace Body */
         .main-body {
             flex: 1;
-            padding: 4rem 5rem;
+            padding: 4.2rem 5.5rem;
             display: flex;
             flex-direction: column;
-            gap: 3.2rem;
+            gap: 3.5rem;
             overflow-y: auto;
         }
 
@@ -332,92 +332,92 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 2.4rem;
+            gap: 2.6rem;
         }
 
         .title-wrapper {
             display: flex;
             align-items: center;
-            gap: 2.2rem;
+            gap: 2.6rem;
         }
 
         .net-core-title {
             font-family: 'Cinzel', serif;
-            font-size: 2.6rem;
-            letter-spacing: 4px;
+            font-size: 2.8rem;
+            letter-spacing: 4.5px;
             color: var(--pure-white);
         }
 
         .badge-active {
             font-family: 'Inter', sans-serif;
-            font-size: 0.68rem;
+            font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 3.5px;
+            letter-spacing: 4px;
             background-color: var(--active-node-bg);
             color: var(--active-node-text);
-            padding: 7px 18px;
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.28);
+            padding: 8px 20px;
+            border-radius: 22px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.32);
         }
 
         .search-container {
             position: relative;
             width: 100%;
-            max-width: 440px;
+            max-width: 480px;
         }
 
         .search-input {
             width: 100%;
             background-color: var(--pitch-black);
             border: 1px solid var(--border-deep);
-            border-radius: 16px;
-            padding: 15px 22px 15px 58px;
+            border-radius: 18px;
+            padding: 16px 24px 16px 62px;
             color: var(--pure-white);
-            font-size: 0.88rem;
-            letter-spacing: 1.5px;
+            font-size: 0.92rem;
+            letter-spacing: 1.6px;
             outline: none;
             transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .search-input:focus {
             border-color: var(--accent-color);
-            box-shadow: 0 0 30px var(--glow-color);
+            box-shadow: 0 0 35px var(--glow-color);
         }
 
         .search-icon {
             position: absolute;
-            left: 20px;
+            left: 22px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-muted);
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
         }
 
-        /* নোড যুক্ত করার ফর্ম */
+        /* Node Input Control Module */
         .node-add-container {
             background-color: var(--card-bg);
             border: 1px solid var(--border-deep);
-            border-radius: 18px;
-            padding: 2.2rem 2.8rem;
+            border-radius: 20px;
+            padding: 2.6rem 3.2rem;
             display: flex;
-            gap: 1.8rem;
+            gap: 2rem;
             align-items: center;
             flex-wrap: wrap;
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
         }
 
         .add-input {
             background-color: var(--pitch-black);
             border: 1px solid var(--border-deep);
-            border-radius: 12px;
-            padding: 12px 16px;
+            border-radius: 14px;
+            padding: 14px 18px;
             color: var(--pure-white);
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             outline: none;
             flex: 1;
             min-width: 220px;
-            transition: all 0.3s ease;
+            transition: all 0.35s ease;
         }
 
         .add-input:focus {
@@ -428,64 +428,65 @@
             background-color: var(--accent-color);
             color: var(--active-node-text);
             border: none;
-            border-radius: 12px;
-            padding: 12px 24px;
+            border-radius: 14px;
+            padding: 14px 28px;
             font-weight: 600;
-            font-size: 0.78rem;
-            letter-spacing: 2px;
+            font-size: 0.8rem;
+            letter-spacing: 2.5px;
             cursor: pointer;
             text-transform: uppercase;
-            transition: all 0.4s ease;
+            transition: all 0.45s ease;
         }
 
         .add-btn:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.35);
         }
 
-        /* নোড কার্ডসমূহ */
+        /* Nodes Grid Section */
         .nodes-grid {
             display: flex;
             flex-direction: column;
-            gap: 1.8rem;
+            gap: 2rem;
         }
 
         .empty-state {
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
-            padding: 4rem 0;
+            font-size: 0.88rem;
+            letter-spacing: 1.8px;
+            padding: 4.5rem 0;
             border: 1px dashed var(--border-deep);
-            border-radius: 16px;
+            border-radius: 18px;
         }
 
         .node-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-deep);
-            border-radius: 18px;
-            padding: 2.1rem 2.8rem;
+            border-radius: 20px;
+            padding: 2.4rem 3.2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .node-card:hover {
-            border-color: rgba(255, 204, 0, 0.2);
-            box-shadow: 0 0 55px rgba(255, 204, 0, 0.08);
+            border-color: rgba(255, 204, 0, 0.25);
+            box-shadow: 0 0 60px rgba(255, 204, 0, 0.1);
             transform: translateY(-1px);
         }
 
         .node-details {
             display: flex;
             align-items: center;
-            gap: 2.4rem;
+            gap: 2.8rem;
         }
 
         .avatar {
-            width: 72px;
-            height: 72px;
+            width: 78px;
+            height: 78px;
             background-color: var(--pitch-black);
             border: 1px solid var(--border-deep);
             border-radius: 50%;
@@ -493,7 +494,7 @@
             align-items: center;
             justify-content: center;
             font-family: 'Cinzel', serif;
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--accent-color);
             position: relative;
             background-size: cover;
@@ -502,50 +503,67 @@
 
         .status-dot {
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             background-color: #00ff66;
             border-radius: 50%;
             bottom: 2px;
             right: 2px;
-            box-shadow: 0 0 10px #00ff66;
+            box-shadow: 0 0 12px #00ff66;
         }
 
         .node-info-text {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 9px;
         }
 
         .node-name {
-            font-size: 1.35rem;
+            font-size: 1.45rem;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
         }
 
         .node-location {
-            font-size: 0.78rem;
-            letter-spacing: 1.5px;
+            font-size: 0.82rem;
+            letter-spacing: 1.6px;
             color: var(--text-muted);
         }
 
         .node-type-badge {
-            font-size: 0.78rem;
-            letter-spacing: 1.8px;
+            font-size: 0.82rem;
+            letter-spacing: 2px;
             color: var(--text-muted);
         }
 
-        .delete-btn {
+        .action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-base {
             background: transparent;
-            color: var(--error-color);
             border: 1px solid var(--border-deep);
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.68rem;
+            border-radius: 9px;
+            padding: 7px 16px;
+            font-size: 0.7rem;
             cursor: pointer;
-            letter-spacing: 1.2px;
-            transition: all 0.3s ease;
-            margin-right: 12px;
+            letter-spacing: 1.4px;
+            transition: all 0.35s ease;
+        }
+
+        .edit-btn {
+            color: var(--accent-color);
+        }
+
+        .edit-btn:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 12px rgba(255, 204, 0, 0.2);
+        }
+
+        .delete-btn {
+            color: var(--error-color);
         }
 
         .delete-btn:hover {
@@ -557,10 +575,10 @@
             background: transparent;
             color: var(--accent-color);
             border: 1px solid var(--border-deep);
-            padding: 8px 20px;
-            border-radius: 12px;
-            font-size: 0.78rem;
-            letter-spacing: 1.8px;
+            padding: 9px 22px;
+            border-radius: 14px;
+            font-size: 0.82rem;
+            letter-spacing: 2px;
             cursor: pointer;
             transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
@@ -568,10 +586,10 @@
         .logout-btn:hover {
             border-color: #ff3333;
             color: #ff3333;
-            box-shadow: 0 0 25px rgba(255, 51, 51, 0.18);
+            box-shadow: 0 0 30px rgba(255, 51, 51, 0.2);
         }
 
-        /* রেসপন্সিভ ডিজাইন */
+        /* Responsive */
         @media screen and (max-width: 768px) {
             .workspace {
                 width: 100vw;
@@ -581,53 +599,53 @@
             }
 
             .sidebar {
-                width: 64px;
-                padding: 1.6rem 0;
-                gap: 2.2rem;
-            }
-
-            .logo-vertical {
-                font-size: 0.58rem;
-            }
-
-            .nav-icon {
-                width: 40px;
-                height: 40px;
-            }
-
-            .header {
-                height: 80px;
-                padding: 0 1.8rem;
-            }
-
-            .header-title {
-                font-size: 0.98rem;
-            }
-
-            .main-body {
-                padding: 1.8rem;
+                width: 68px;
+                padding: 1.8rem 0;
                 gap: 2.4rem;
             }
 
+            .logo-vertical {
+                font-size: 0.62rem;
+            }
+
+            .nav-icon {
+                width: 44px;
+                height: 44px;
+            }
+
+            .header {
+                height: 84px;
+                padding: 0 2rem;
+            }
+
+            .header-title {
+                font-size: 1.05rem;
+            }
+
+            .main-body {
+                padding: 2rem;
+                gap: 2.6rem;
+            }
+
             .net-core-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
             .body-top-section {
                 flex-direction: column;
                 align-items: stretch;
-                gap: 1.8rem;
+                gap: 2rem;
             }
 
             .node-add-container {
-                gap: 1.2rem;
+                gap: 1.4rem;
             }
 
             .node-card {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 1.8rem;
-                padding: 1.6rem;
+                gap: 2rem;
+                padding: 1.8rem;
             }
 
             .node-details {
@@ -646,7 +664,7 @@
     <div id="intro-screen">
         <div class="intro-text-wrapper">
             <div class="intro-title" id="titleText">ABSTRACT</div>
-            <div class="intro-subtitle" id="subtitleText">INITIALIZING GLOBAL CORE CONTROL V3</div>
+            <div class="intro-subtitle" id="subtitleText">INITIALIZING GLOBAL DATA PLATFORM</div>
         </div>
     </div>
 
@@ -673,7 +691,7 @@
                     <input type="password" class="auth-input" id="password" placeholder="••••••••" required>
                 </div>
 
-                <span class="error-message" id="errorMessage">Invalid credentials. Access denied.</span>
+                <span class="error-message" id="errorMessage">Invalid credentials. System access denied.</span>
 
                 <button type="submit" class="auth-button" id="submitBtn">Authenticate</button>
             </form>
@@ -690,14 +708,14 @@
             <div class="logo-vertical">ABSTRACT</div>
             
             <div class="nav-icon active">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"/>
                     <line x1="2" y1="12" x2="22" y2="12"/>
                 </svg>
             </div>
 
             <div class="nav-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polygon points="12 2 2 7 12 12 22 7 12 2"/>
                     <polyline points="2 17 12 22 22 17"/>
                     <polyline points="2 12 12 17 22 12"/>
@@ -705,7 +723,7 @@
             </div>
 
             <div class="nav-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="3"/>
                     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                 </svg>
@@ -715,7 +733,7 @@
         <div class="content-container">
             <header class="header">
                 <div class="header-title">ABSTRACT CORE</div>
-                <div style="display: flex; gap: 1.8rem; align-items: center;">
+                <div style="display: flex; gap: 2rem; align-items: center;">
                     <div class="header-status-badge">SYSTEM STABLE</div>
                     <button class="logout-btn" onclick="handleLogout()">LOGOUT</button>
                 </div>
@@ -739,11 +757,12 @@
                 </div>
 
                 <div class="node-add-container">
-                    <input type="text" class="add-input" id="nodeName" placeholder="Node Name (e.g., Jane Doe)" required>
-                    <input type="text" class="add-input" id="nodeLocation" placeholder="Location (e.g., Tokyo, JP)" required>
-                    <input type="text" class="add-input" id="nodeType" placeholder="Node Type (e.g., System Node)" required>
-                    <input type="file" class="add-input" id="nodeImage" accept="image/*" title="Profile Image">
-                    <button class="add-btn" onclick="addNewNode()">Add Node</button>
+                    <input type="hidden" id="editIndex" value="">
+                    <input type="text" class="add-input" id="nodeName" placeholder="Node Name" required>
+                    <input type="text" class="add-input" id="nodeLocation" placeholder="Location" required>
+                    <input type="text" class="add-input" id="nodeType" placeholder="Node Type" required>
+                    <input type="file" class="add-input" id="nodeImage" accept="image/*">
+                    <button class="add-btn" id="submitNodeBtn" onclick="saveNode()">Add Node</button>
                 </div>
 
                 <div class="nodes-grid" id="nodesContainer">
@@ -755,12 +774,15 @@
 
     <script>
         let isSignUp = false;
-        let nodes = []; // কোনো ফেক নোড রাখা হয়নি, সম্পূর্ণ খালি
+        let authDatabase = [];
+        let nodes = JSON.parse(localStorage.getItem('saved_nodes')) || [];
 
         document.addEventListener("DOMContentLoaded", () => {
+            // Load Auth Database from LocalStorage
+            authDatabase = JSON.parse(localStorage.getItem('users_auth_db')) || [];
+            
             const tl = gsap.timeline();
-
-            // সিনেম্যাটিক অ্যানিমেশন
+            
             tl.to("#titleText", {
                 opacity: 1,
                 y: 0,
@@ -772,12 +794,12 @@
                 y: 0,
                 duration: 0.8,
                 ease: "power2.out"
-            }, "-=0.6")
+            }, "-=0.7")
             .to("#intro-screen", {
                 opacity: 0,
                 duration: 1.2,
                 ease: "power3.inOut",
-                delay: 1.4
+                delay: 1.5
             })
             .set("#intro-screen", { display: "none" })
             .to("#auth-screen", {
@@ -793,14 +815,12 @@
         function renderNodes() {
             const container = document.getElementById('nodesContainer');
             container.innerHTML = '';
-            
+
             if (nodes.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">No active nodes found. Add your first node above to establish presence.</div>
-                `;
+                container.innerHTML = `<div class="empty-state">No nodes currently initialized. Build your first node object above.</div>`;
                 return;
             }
-            
+
             nodes.forEach((node, index) => {
                 const card = document.createElement('div');
                 card.className = 'node-card';
@@ -821,9 +841,10 @@
                             <span class="node-location">${node.location}</span>
                         </div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 16px;">
+                    <div class="action-buttons">
                         <span class="node-type-badge">${node.type}</span>
-                        <button class="delete-btn" onclick="deleteNode(${index})">REMOVE</button>
+                        <button class="btn-base edit-btn" onclick="editNode(${index})">EDIT</button>
+                        <button class="btn-base delete-btn" onclick="deleteNode(${index})">REMOVE</button>
                     </div>
                 `;
                 container.appendChild(card);
@@ -840,13 +861,12 @@
             );
 
             if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">No matching nodes found.</div>
-                `;
+                container.innerHTML = `<div class="empty-state">No matching node objects found.</div>`;
                 return;
             }
 
-            filtered.forEach((node, index) => {
+            filtered.forEach((node) => {
+                const index = nodes.indexOf(node);
                 const card = document.createElement('div');
                 card.className = 'node-card';
                 
@@ -866,23 +886,25 @@
                             <span class="node-location">${node.location}</span>
                         </div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 16px;">
+                    <div class="action-buttons">
                         <span class="node-type-badge">${node.type}</span>
-                        <button class="delete-btn" onclick="deleteNode(${nodes.indexOf(node)})">REMOVE</button>
+                        <button class="btn-base edit-btn" onclick="editNode(${index})">EDIT</button>
+                        <button class="btn-base delete-btn" onclick="deleteNode(${index})">REMOVE</button>
                     </div>
                 `;
                 container.appendChild(card);
             });
         }
 
-        function addNewNode() {
+        function saveNode() {
             const name = document.getElementById('nodeName').value;
             const location = document.getElementById('nodeLocation').value;
             const type = document.getElementById('nodeType').value;
+            const editIndex = document.getElementById('editIndex').value;
             const imageFile = document.getElementById('nodeImage').files[0];
 
             if (!name || !location || !type) {
-                alert("Please fill all required fields before adding.");
+                alert("Please fill all required input fields.");
                 return;
             }
 
@@ -891,35 +913,48 @@
             if (imageFile) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    nodes.push({
-                        id: Date.now(),
-                        name: name,
-                        location: location,
-                        type: type,
-                        initials: initials,
-                        image: e.target.result
-                    });
-                    renderNodes();
-                    clearInputs();
+                    if (editIndex !== "") {
+                        nodes[editIndex] = { name, location, type, initials, image: e.target.result };
+                        document.getElementById('editIndex').value = "";
+                        document.getElementById('submitNodeBtn').innerText = "Add Node";
+                    } else {
+                        nodes.push({ name, location, type, initials, image: e.target.result });
+                    }
+                    updateStorage();
                 };
                 reader.readAsDataURL(imageFile);
             } else {
-                nodes.push({
-                    id: Date.now(),
-                    name: name,
-                    location: location,
-                    type: type,
-                    initials: initials,
-                    image: null
-                });
-                renderNodes();
-                clearInputs();
+                if (editIndex !== "") {
+                    // Retain existing image if not being updated
+                    const existingImage = nodes[editIndex].image;
+                    nodes[editIndex] = { name, location, type, initials, image: existingImage };
+                    document.getElementById('editIndex').value = "";
+                    document.getElementById('submitNodeBtn').innerText = "Add Node";
+                } else {
+                    nodes.push({ name, location, type, initials, image: null });
+                }
+                updateStorage();
             }
+        }
+
+        function updateStorage() {
+            localStorage.setItem('saved_nodes', JSON.stringify(nodes));
+            renderNodes();
+            clearInputs();
         }
 
         function deleteNode(index) {
             nodes.splice(index, 1);
-            renderNodes();
+            updateStorage();
+        }
+
+        function editNode(index) {
+            const node = nodes[index];
+            document.getElementById('nodeName').value = node.name;
+            document.getElementById('nodeLocation').value = node.location;
+            document.getElementById('nodeType').value = node.type;
+            document.getElementById('editIndex').value = index;
+            document.getElementById('submitNodeBtn').innerText = "Save Node";
         }
 
         function clearInputs() {
@@ -954,27 +989,36 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            if (username && password) {
-                document.getElementById('errorMessage').style.display = 'none';
-
-                gsap.to("#auth-screen", {
-                    opacity: 0,
-                    duration: 0.6,
-                    ease: "power2.inOut"
-                }).then(() => {
-                    document.getElementById('auth-screen').style.display = 'none';
-                    const workspace = document.getElementById('mainWorkspace');
-                    workspace.style.visibility = "visible";
-                    
-                    gsap.to(workspace, {
-                        opacity: 1,
-                        scale: 1,
-                        duration: 1.2,
-                        ease: "power4.out"
-                    });
-                });
+            if (isSignUp) {
+                authDatabase.push({ username, password });
+                localStorage.setItem('users_auth_db', JSON.stringify(authDatabase));
+                alert("Account successfully registered. You can now Sign In.");
+                toggleMode();
             } else {
-                document.getElementById('errorMessage').style.display = 'block';
+                const userExists = authDatabase.find(u => u.username === username && u.password === password);
+                
+                if (userExists || (username === "admin" && password === "admin")) {
+                    document.getElementById('errorMessage').style.display = 'none';
+
+                    gsap.to("#auth-screen", {
+                        opacity: 0,
+                        duration: 0.6,
+                        ease: "power2.inOut"
+                    }).then(() => {
+                        document.getElementById('auth-screen').style.display = 'none';
+                        const workspace = document.getElementById('mainWorkspace');
+                        workspace.style.visibility = "visible";
+                        
+                        gsap.to(workspace, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 1.2,
+                            ease: "power4.out"
+                        });
+                    });
+                } else {
+                    document.getElementById('errorMessage').style.display = 'block';
+                }
             }
         }
 
@@ -983,13 +1027,14 @@
             
             gsap.to(workspace, {
                 opacity: 0,
-                scale: 0.95,
+                scale: 0.96,
                 duration: 0.5,
                 ease: "power2.inOut"
             }).then(() => {
                 workspace.style.visibility = "hidden";
                 const authScreen = document.getElementById('auth-screen');
                 authScreen.style.display = 'flex';
+                
                 gsap.to(authScreen, {
                     opacity: 1,
                     duration: 0.7,
